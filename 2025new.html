@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>              
+          <meta charset="UTF-8">
+          <meta name="viewport"content="width=device-width, initial-scale=1.0">
+          <title>Tinney's kitchen</title>
+          <link rel="stylesheet" href="styles.css">
+          <script defer src="script.js"></script>
+          <style>
+      .video-slider {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    overflow: hidden;
+}
+.video-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 0; /* Add this to ensure proper stacking */
+}
+
+.video-slide.active {
+    opacity: 1;
+    z-index: 1;
+}
+           
+            body{
+                  font-family: Arial,sans-serif;
+                  margin: 0;
+                  padding: 0;
+                  background-image: url('popping-cuisine.jpg'); 
+                  background-size: cover;
+                  background-repeat: no-repeat;
+                  background-position: center;
+                  background-attachment: fixed;
+                  text-align: center;
+                  
+            }
+            .header{
+                  background-color: #d2691e;
+                  color: white;
+                  padding: 20px;
+                  font-size: 24px;
+            }
+
+            h2, h3, p {
+                  text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+            }
+
+            .container{
+                      max-width: 800px;
+                      margin: 20px auto;
+                      padding: 20px;
+                      background: rgba(0, 0, 0, 0.6);                                   
+                      border-radius: 10px;
+                      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);          
+            }   
+
+            .button{
+                  display: inline-block;
+                  padding: 10px 20px;
+                  margin-top: 10px;
+                  background-color: #d2691e;
+                  color: white;
+                  text-decoration: none;
+                  border-radius: 5px; cursor: pointer;
+                  cursor: pointer;
+                  font-weight: bold
+            }
+
+            .section {
+                  margin: 20px 0;
+                  padding: 20px;
+                  border-radius: 10px;
+                  background-color: rgba(0, 0, 0, 0.7); 
+                  color: white;
+                  font-weight: 500;
+                  text-shadow: 1px 1px 2px rgba(0,0,0,0.7); 
+            }
+
+            
+            /* popup styling */
+            .popup{
+                  display:none;
+                  position: fixed;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  background: white;
+                  padding: 20px;
+                  z-index: 1001;
+                  box-Shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                  border-radius: 10px;
+                  color: black;
+                  text-align: left;
+                  width: 90%;
+                  max-width: 400px;
+                  max-height: 80vh; 
+                  overflow-y: auto; 
+
+            }
+            .popup h2 {
+                  margin-top: 0;
+            }
+
+            .popup input, .popup textarea{
+                  width: 100%;
+                  padding: 10px;
+                  margin: 5px 0;
+                  border: 1px solid #ccc;
+                  border-radius: 5px;
+            }
+
+            .popup .close{
+                  background: red;
+                  color: white;
+                  padding: 5px 10px;
+                  border: none;
+                  cursor: pointer;
+                  margin-top: 10px;
+            }
+
+            #popupOverlay {
+                  display: none;
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width :100%;
+                  height:100%;
+                  background: rgba(0, 0, 0, 0.5);
+                  z-index: 1000;
+            }
+            
+            .meal-prep {
+      background-color: #fff9f1;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin: 40px auto;
+      max-width: 900px;
+    }
+
+    .meal-prep h2,
+    .meal-prep h3 {
+      color: #d2691e;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .meal-prep-table,
+    .meal-pricing-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .meal-prep-table th,
+    .meal-prep-table td,
+    .meal-pricing-table th,
+    .meal-pricing-table td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .meal-prep-table th,
+    .meal-pricing-table th {
+      background-color: #ffe0c2;
+      color: #5a2d0c;
+    }
+
+    .meal-prep-table tr:nth-child(even),
+    .meal-pricing-table tr:nth-child(even) {
+      background-color: #fdf5ee;
+    }
+                 
+      </style>
+      </head>
+ <body>
+       
+  <header class="header">
+            TINNEY'S KITCHEN
+
+            <div>
+              <ul><li>home</li>
+              <li></li>
+              <li></li></ul>
+            </div>
+        </header>
+
+        <div class="video-slider">
+          <video class="video-slide active" autoplay muted loop>
+              <source src="video_2025-03-21-36-50.mp4" type="video/mp4">
+          </video>
+          <video class="video-slide" autoplay muted loop>
+              <source src="video_2025-03-30_21-44-00.mp4" type="video/mp4">
+          </video>
+          <video class="video-slide" autoplay muted loop>
+              <source src="video_2025-03-30_21-39-06.mp4" type="video/mp4">
+          </video>
+        </div>
+        
+
+     <div class="container">
+            <h2>Welcome to Tinney's kitchen</h2>
+            <p>Delicious,homemade meals crafted with love.</p>
+
+            <div class="section">
+                 <h2>About Tinney's Kitchen</h2>
+                 <h3>Meet chef whitney-Of tinney's kitchen.</h3>
+                 <p>Cooking has always been more than just meals for me-it's a passion, an art, and a way to bring people 
+                   together.My journey as a private chef started with a deep love for food and the joy of creating
+                   unforgetable dining experiences.From experimenting in the kitchen as a child to perfecting my craft
+                   professionally, every dish I create carries a strory.</p> 
+                 <p>Through<b>Tinney's kitchen</b> I bring homemade,high-quality meals to the table crafted with love and 
+                  expertise. My goal is simple: to provide my clients with expectional flavors, warmth, and a dining
+                  expierience that feels both luxurious and comforting </p>
+            </div>
+            <div class="section">
+                  <h3>My Cooking Philosophy</h3>
+                  <p>At <b>Tinney's Kitchen</b>, I believe that great food starts with great ingredients. That's why I focus on
+                         using <b>fresh, locally sourced produce and high-quality ingredients</b> to create dishes that are not
+                          only delicious but also nourishing.</p>
+                  <p>My cooking style is inspired by <b>[your preferred cuisines—French, Italian, African, Fusion, etc.]</b>,
+                         blending traditional flavors with a modern touch. Whether you're looking for an intimate private dining
+                         experience, event catering, or a custom meal plan, every dish is prepared with care, creativity, and 
+                         attention to detail.</p>
+              </div>
+              
+              <div class="section">
+                  <h3>Behind the Scenes</h3>
+                  <p>Take a peek into the world of <b>Tinney's Kitchen</b>! Here are some behind-the-scenes moments of me in action
+                  —preparing meals, experimenting with new recipes, and creating beautiful dishes for my clients.</p>
+                  <p>[📸 <i>(Insert high-quality images of you cooking, plating dishes, and behind-the-scenes moments in the kitchen
+                  .)</i>]</p>
+              </div>
+              
+              <div class="section">
+                  <h3>What Clients Say</h3>
+                  <p><i>"Whitney's meals are not just food—they are an experience! Every bite is crafted with love and expertise."</i>
+                   - [Client Name]</p>
+                  <p><i>"I had the best private dining experience thanks to Tinney's Kitchen. The flavors, the presentation, everything
+                   was perfect!"</i> - [Client Name]</p>
+              </div>
+             
+              <div class="section">
+                  <h2>Book a Private Dining Experience</h2>
+                  <p>Ready to enjoy a delicious private meal crafted just for you?</p>
+                  <a href="javascript:void(0)" onclick="openPopup('popupForm')" class="button">BOOK NOW</a>
+                </div>
+
+              <div class="section">
+                   <h2>Get a Quote</h2>
+                   <p>Inquire about pricing for your private event.</p>
+                   <a href="javascript:void(0)" onclick="openPopup('quotePopup')" class="button">GET A QUOTE</a>
+                  </div>
+
+                  <div class="section">
+                        <h2>View Menu</h2>
+                        <p>Explore our delicious dishes and indulge in a variety
+                         of mouthwatering dishes crafted to perfection.</p>
+                         <a href="javascript:void(0)" onclick="openPopup('menuPopup')" class="button">VIEW MENU</a> 
+                  </div>
+
+                  <div class="section">
+                  <h2>Contact Me</h2>
+                  <p>Get intouch for inquires and special request.</p>
+                  <a href="javascript:void(0)" onclick="openPopup('contactPopup')" class="button">Contact Me</a>
+                  </div><section class="meal-prep">
+                        <h2>7-Day Gym-Friendly Meal Prep Plan</h2>
+                        <p>Tailored for active individuals seeking to gain or maintain a healthy weight through balanced and nutritious meals.</p>
+                      
+                        <div class="meal-table-wrapper">
+                          <table class="meal-prep-table">
+                            <thead>
+                              <tr>
+                                <th>Day</th>
+                                <th>Breakfast</th>
+                                <th>Lunch</th>
+                                <th>Dinner</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>Monday</td>
+                                <td>Oatmeal with banana & peanut butter</td>
+                                <td>Grilled chicken + brown rice + veggies</td>
+                                <td>Beef stew + sweet potatoes + kales</td>
+                              </tr>
+                              <tr>
+                                <td>Tuesday</td>
+                                <td>Boiled eggs + toast + avocado</td>
+                                <td>Minced beef wraps + guacamole</td>
+                                <td>Tilapia fillet + ugali + spinach</td>
+                              </tr>
+                              <tr>
+                                <td>Wednesday</td>
+                                <td>Greek yogurt + granola + berries</td>
+                                <td>Chicken pasta salad</td>
+                                <td>Githeri with avocado & fruits</td>
+                              </tr>
+                              <tr>
+                                <td>Thursday</td>
+                                <td>Omelette + toast + tea/juice</td>
+                                <td>Beef stir fry + rice</td>
+                                <td>Lentils + chapati + kachumbari</td>
+                              </tr>
+                              <tr>
+                                <td>Friday</td>
+                                <td>Porridge + boiled egg + banana</td>
+                                <td>Chicken sandwich + fruit smoothie</td>
+                                <td>Matoke + minced meat + sukuma</td>
+                              </tr>
+                              <tr>
+                                <td>Saturday</td>
+                                <td>Pancakes + honey + tea</td>
+                                <td>Rice + beans + avocado salad</td>
+                                <td>Grilled chicken + mashed potatoes</td>
+                              </tr>
+                              <tr>
+                                <td>Sunday</td>
+                                <td>French toast + fruit salad</td>
+                                <td>Fried fish + ugali + greens</td>
+                                <td>Chicken stew + brown rice + veggies</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                      
+                          <h3>Pricing (KES)</h3>
+                          <table class="meal-pricing-table">
+                            <thead>
+                              <tr>
+                                <th>Package</th>
+                                <th>Price (KES)</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>3-Day Meal Prep</td>
+                                <td>KES 4,500</td>
+                              </tr>
+                              <tr>
+                                <td>7-Day Meal Prep</td>
+                                <td>KES 9,500</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </section>
+
+
+                  
+                   <!-- Overlay -->
+                  <div id="popupOverlay"></div>
+
+                  <!-- Popup Form -->
+                  <div id="popupForm" class="popup">
+                        <h2>Book a private Dining Experience</h2>
+                        <form>
+                              <label for="name">Name:</label>
+                              <input type="text" id="name" name="name" required>
+
+                              <label for="email">Email:</label>
+                              <input type="email" id="email" name="email"required>
+
+                              <label for="date">preferred Date:</label>
+                              <input type="date" id="date" name="date" required>
+
+                              <label for="message">Additional Details:</label>
+                              <textarea id="message" name="message" rows="4"></textarea>
+
+                              <button type="submit" class="button">Submit</button>
+                              <button type="button" class="close" onclick="closePopup()">close</button>
+                              
+                        </form>
+                        </div>
+
+                        <!-- Quote Popup -->
+                        <div id="quotePopup" class="popup">
+                          <h2>Request a Quote</h2>
+                          <form>
+                            <label for="name">Name:</label>
+                            <input type="text" id="quoteName" name="name" required>
+                        
+                            <label for="event">Event Type:</label>
+                            <input type="text" id="eventType" name="event" required>
+                        
+                            <label for="guests">Number of Guests:</label>
+                            <input type="number" id="guests" name="guests" required>
+                        
+                            <label for="details">Additional Details:</label>
+                            <textarea id="quoteDetails" name="details" rows="4"></textarea>
+                        
+                            <button type="submit" class="button">Submit</button>
+                            <button type="button" class="close" onclick="closePopup()">Close</button>
+                          </form>
+                        </div>
+                        
+                          <!-- View Menu Popup -->
+                          <div id="menuPopup" class="popup">
+                           <h2>Our Menu</h2>
+                               <div>
+                           <h3>Appetizers</h3>
+                  <ul>
+                           <li>Spicy Grilled Prawns</li>
+                          <li>Stuffed Mushrooms</li>
+                          <li>Mini Beef Sliders</li>
+                          <li>Caprese Skewers</li>
+                          </ul>
+    
+                          <h3>Main Courses</h3>
+                  <ul>
+                        <li>Garlic Butter Herb Chicken</li>
+                        <li>Slow-Cooked Lamb Chops</li>
+                        <li>Grilled Salmon with Mango Salsa</li>
+                        <li>Spaghetti in Creamy Cajun Sauce</li>
+                  </ul>
+    
+                           <h3>Sides</h3>
+                  <ul>
+                         <li>Roasted Veggie Medley</li>
+                         <li>Creamy Mashed Potatoes</li>
+                         <li>Jollof Rice</li>
+                         <li>Garlic Parmesan Bread Rolls</li>
+                  </ul>
+    
+                           <h3>Desserts</h3>
+                  <ul>
+                         <li>Chocolate Lava Cake</li>
+                         <li>Vanilla Bean Cheesecake</li>
+                         <li>Fruit Tartlets</li>
+                         <li>Coconut Cream Pudding</li>
+                  </ul>
+    
+                           <h3>Drinks</h3>
+                  <ul>
+                         <li>Fresh Mint Lemonade</li>
+                         <li>Fruit-Infused Water</li>
+                         <li>Homemade Zobo</li>
+                         <li>Signature Mocktails</li>
+                  </ul>
+                         </div>
+                         <button type="button" class="close" onclick="closePopup()">Close</button>
+                         </div>
+
+                        <!-- Contact Me Popup -->
+                        <div id="contactPopup" class="popup">
+                          <h2>Contact Me</h2>
+                          <form>
+                            <label for="name">Name:</label>
+                            <input type="text" id="contactName" name="name" required>
+                        
+                            <label for="email">Email:</label>
+                            <input type="email" id="contactEmail" name="email" required>
+                        
+                            <label for="message">Message:</label>
+                            <textarea id="contactMessage" name="message" rows="4"></textarea>
+                        
+                            <button type="submit" class="button">Send</button>
+                            <button type="button" class="close" onclick="closePopup()">Close</button>
+                          </form>
+                          </div>      
+                   
+      <script>
+            
+            document.addEventListener("DOMContentLoaded", function() {
+    let slides = document.querySelectorAll(".video-slide");
+    let currentIndex = 0;
+    
+    // Ensure all videos are playing
+    slides.forEach(slide => {
+        slide.play().catch(error => {
+            console.log("Video play failed:", error);
+        });
+    });
+
+    function showNextVideo() {
+        // Hide current video
+        slides[currentIndex].classList.remove("active");
+        
+        // Move to next video
+        currentIndex = (currentIndex + 1) % slides.length;
+        
+        // Show next video
+        slides[currentIndex].classList.add("active");
+        
+        // Ensure the next video is playing
+        slides[currentIndex].play().catch(error => {
+            console.log("Video play failed:", error);
+        });
+    }
+    
+    // Set up the interval for auto-sliding
+    if (slides.length > 0) {
+        setInterval(showNextVideo, 5000);
+    }
+});
+
+function openPopup(popupId) {
+    // Close any open popups first
+    closePopup();
+    document.getElementById('popupOverlay').style.display = 'block';
+    document.getElementById(popupId).style.display = 'block';
+}
+
+function closePopup() {
+    document.getElementById('popupOverlay').style.display = 'none';
+    const popups = document.querySelectorAll('.popup');
+    popups.forEach(popup => popup.style.display = 'none');
+}
+      </script>
+    </body>
+    </html>
