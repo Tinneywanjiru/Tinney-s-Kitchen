@@ -404,7 +404,10 @@
                   <!-- Popup Form -->
                   <div id="popupForm" class="popup">
                         <h2>Book a private Dining Experience</h2>
-                        <form>
+                        <form
+                          action="https://formspree.io/f/xldjappk"
+                           method="POST">
+
                               <label for="name">Name:</label>
                               <input type="text" id="name" name="name" required>
 
@@ -412,10 +415,10 @@
                               <input type="email" id="email" name="email"required>
 
                               <label for="date">preferred Date:</label>
-                              <input type="date" id="date" name="date" required>
+                              <input type="date" id="date" name="message_date" required>
 
                               <label for="message">Additional Details:</label>
-                              <textarea id="message" name="message" rows="4"></textarea>
+                              <textarea id="message" name="message_details rows="4"></textarea>
 
                               <button type="submit" class="button">Submit</button>
                               <button type="button" class="close" onclick="closePopup()">close</button>
@@ -426,18 +429,20 @@
                         <!-- Quote Popup -->
                         <div id="quotePopup" class="popup">
                           <h2>Request a Quote</h2>
-                          <form>
+                          <form
+                            action="https://formspree.io/f/xldjappk"
+                              method="POST">
                             <label for="name">Name:</label>
-                            <input type="text" id="quoteName" name="name" required>
+                            <input type="text" id="quoteName" name="message_name" required>
                         
                             <label for="event">Event Type:</label>
-                            <input type="text" id="eventType" name="event" required>
+                            <input type="text" id="eventType" name="message_event" required>
                         
                             <label for="guests">Number of Guests:</label>
-                            <input type="number" id="guests" name="guests" required>
+                            <input type="number" id="guests" name="message_guests" required>
                         
                             <label for="details">Additional Details:</label>
-                            <textarea id="quoteDetails" name="details" rows="4"></textarea>
+                            <textarea id="quoteDetails" name="message_details" rows="4"></textarea>
                         
                             <button type="submit" class="button">Submit</button>
                             <button type="button" class="close" onclick="closePopup()">Close</button>
@@ -494,9 +499,12 @@
                         <!-- Contact Me Popup -->
                         <div id="contactPopup" class="popup">
                           <h2>Contact Me</h2>
-                          <form>
+                          <form
+                             action="https://formspree.io/f/xldjappk"
+                              method="POST">
+
                             <label for="name">Name:</label>
-                            <input type="text" id="contactName" name="name" required>
+                            <input type="text" id="contactName" name="message_name" required>
                         
                             <label for="email">Email:</label>
                             <input type="email" id="contactEmail" name="email" required>
