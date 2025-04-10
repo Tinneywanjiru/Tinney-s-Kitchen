@@ -14,17 +14,16 @@
              height: 90vh;
              overflow: hidden;
            }
-
            .slide {
-             position: absolute;
-             top: 0;
-             left: 0;
-             width: 100%;
-             height: 100%;
-             opacity: 0;
-             transtion: opacity 1s ease-in-out;
-             z-index: 0;
-           }
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;  /* Fixed typo here */
+            z-index: 0;
+            }
 
            .slide img {
             width: 100%;
@@ -226,26 +225,31 @@
           <div class="image-slider">
 
             <div class="slide active">
-              <img scr="photo_2025-04-09-13-22-37.jpg" alt="Delicious meal from tinney's kitchen">
+              <img src="photo_2025-04-09-13-22-37.jpg" alt="Delicious meal from tinney's kitchen"/>
             </div>
 
             <div class="slide">
-              <img src="photo_2025-04-09_13-22-38 (2).jpg" alt="Gourmet dining experience">
+              <img src="photo_2025-04-09_13-22-38 (2).jpg" alt="Gourmet dining experience"/>
             </div>
 
             <div class="slide">
-              <img src="photo_2025-04-09_13-22-38 (3).jpg" alt="healthy meal prep">
-              <img src="photo_2025-04-09_13-22-40 (2).jpg" alt="healthy meal prep">
+              <img src="photo_2025-04-09_13-22-38 (3).jpg" alt="healthy meal prep"/>
             </div>
             
             <div class="slide">
-              <img src="photo_2025-04-09_13-22-39 (2).jpg" alt="chef's special meal">
+              <img src="photo_2025-04-09_13-22-39 (2).jpg" alt="chef's special meal"/>
             </div>
 
             <div class="slide">
-              <img src=""
-
-            </div>
+              <img src="photo_2025-04-09_13-22-37 (2).jpg" alt="private dining experience"/>
+             </div> 
+               <div class="slider-controls">
+              <div class="slider-dot active" data-index="0"></div>
+              <div class="slider-dot" data-index="1"></div>
+              <div class="slider-dot" data-index="2"></div>
+              <div class="slider-dot" data-index="3"></div>
+              <div class="slider-dot" data-index="4"></div>
+           </div>
           </div>
           
           </header>
@@ -519,6 +523,46 @@
                    
       <script>
             
+      // JavaScript for the Image Slider (add to your existing script)
+document.addEventListener("DOMContentLoaded", function() {
+    // Image slider functionality
+    let slides = document.querySelectorAll(".image-slider .slide");
+    let dots = document.querySelectorAll(".slider-dot");
+    let currentIndex = 0;
+    
+    function showSlide(index) {
+        // Hide current slide
+        slides[currentIndex].classList.remove("active");
+        dots[currentIndex].classList.remove("active");
+        
+        // Update index
+        currentIndex = index;
+        
+        // Show new slide
+        slides[currentIndex].classList.add("active");
+        dots[currentIndex].classList.add("active");
+    }
+    
+    // Set up automatic sliding
+    function nextSlide() {
+        let nextIndex = (currentIndex + 1) % slides.length;
+        showSlide(nextIndex);
+    }
+    
+    // Start the automatic slideshow
+    let slideInterval = setInterval(nextSlide, 5000); // Change slides every 5 seconds
+    
+    // Allow clicking on dots to manually change slides
+    dots.forEach(dot => {
+        dot.addEventListener("click", function() {
+            clearInterval(slideInterval); // Stop automatic sliding
+            showSlide(parseInt(this.getAttribute("data-index")));
+            slideInterval = setInterval(nextSlide, 5000); // Restart automatic sliding
+        });
+    });
+});
+
+
             document.addEventListener("DOMContentLoaded", function() {
     let slides = document.querySelectorAll(".video-slide");
     let currentIndex = 0;
