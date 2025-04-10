@@ -7,28 +7,66 @@
           <link rel="stylesheet" href="styles.css">
           <script defer src="script.js"></script>
           <style>
-      .video-slider {
-    position: relative;
-    width: 100%;
-    height: 90vh;
-    overflow: hidden;
-}
-.video-slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    z-index: 0; /* Add this to ensure proper stacking */
-}
-
-.video-slide.active {
-    opacity: 1;
-    z-index: 1;
-}
            
-            body{
+           .image-slider {
+             position: relative;
+             width: 100%;
+             height: 90vh;
+             overflow: hidden;
+           }
+
+           .slide {
+             position: absolute;
+             top: 0;
+             left: 0;
+             width: 100%;
+             height: 100%;
+             opacity: 0;
+             transtion: opacity 1s ease-in-out;
+             z-index: 0;
+           }
+
+           .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+           }
+
+          .slide.active {
+            opacity: 1;
+            z-index: 1;
+          }
+
+          .slider-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            z-index: 2;
+           }
+
+           .slider-dot{
+             width: 12px;
+             height: 12px;
+             border-radius: 50%;
+             background-color: rgba(255, 255, 255, 0.5);
+             margin: 0.8px;
+             cursor: pointer;
+             transition: background-color 0.3s;
+           } 
+
+           .slider-dot.active {
+             background-color: #d2691e;
+           }
+
+           @media (max-width: 1200px) {
+             .image-slider {
+               height: 50vh;
+             }
+           }
+           
+           body{
                   font-family: Arial,sans-serif;
                   margin: 0;
                   padding: 0;
@@ -43,7 +81,7 @@
             .header{
                   background-color: #d2691e;
                   color: white;
-                  padding: 20px;
+                  /* padding: 20px; */
                   font-size: 24px;
             }
 
@@ -184,27 +222,31 @@
        
   <header class="header">
             TINNEY'S KITCHEN
+         
+          <div class="image-slider">
 
-            <div>
-              <ul><li>home</li>
-              <li></li>
-              <li></li></ul>
+            <div class="slide active">
+              <img scr="photo_2025-04-09-13-22-37.jpg" alt="Delicious meal from tinney's kitchen">
             </div>
-        </header>
 
-        <div class="video-slider">
-          <video class="video-slide active" autoplay muted loop>
-              <source src="video_2025-03-21-36-50.mp4" type="video/mp4">
-          </video>
-          <video class="video-slide" autoplay muted loop>
-              <source src="video_2025-03-30_21-44-00.mp4" type="video/mp4">
-          </video>
-          <video class="video-slide" autoplay muted loop>
-              <source src="video_2025-03-30_21-39-06.mp4" type="video/mp4">
-          </video>
-        </div>
-        
+            <div class="slide">
+              <img src="photo_2025-04-09_13-22-38 (2).jpg" alt="Gourmet dining experience">
+            </div>
 
+            <div class="slide">
+              <img src="photo_2025-04-09_13-22-38 (3).jpg" alt="healthy meal prep">
+            </div>
+            
+            <div class="slide">
+              <img src="photo_2025-04-09_13-22-39 (2).jpg" alt="chef's special meal">
+            </div>
+
+            <div class="slide">
+
+            </div>
+          </div>
+          
+          </header>
      <div class="container">
             <h2>Welcome to Tinney's kitchen</h2>
             <p>Delicious,homemade meals crafted with love.</p>
@@ -262,7 +304,7 @@
                   <div class="section">
                         <h2>View Menu</h2>
                         <p>Explore our delicious dishes and indulge in a variety
-                         of mouthwatering dishes crafted to perfection.</p>
+                          of mouthwatering dishes crafted to perfection.</p>
                          <a href="javascript:void(0)" onclick="openPopup('menuPopup')" class="button">VIEW MENU</a> 
                   </div>
 
