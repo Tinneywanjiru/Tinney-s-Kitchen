@@ -8,6 +8,24 @@
           <script defer src="script.js"></script>
           <style>
            
+          /* Animation styles */
+         .section {
+          opacity: 0;
+          transform: translateY(30px);
+          transition: opacity 0.8s ease, transform 0.8s ease;
+          }
+
+         .section.animate {
+         opacity: 1;
+         transform: translateY(0);
+         }
+
+        /* Optional: stagger animations */
+         .section:nth-child(2) { transition-delay: 0.1s; }
+         .section:nth-child(3) { transition-delay: 0.2s; }
+         .section:nth-child(4) { transition-delay: 0.3s; }
+         .section:nth-child(5) { transition-delay: 0.4s; }
+
            .image-slider {
              position: relative;
              width: 100%;
@@ -522,8 +540,62 @@
                           </div>      
                    
       <script>
-            
-      // JavaScript for the Image Slider (add to your existing script)
+        document.addEventListener('DOMContentLoaded', function() {
+  // Get all sections that should animate
+  const sections = document.querySelectorAll('.section');
+  
+  // Function to check if element is in viewport
+  function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    // Element is considered in viewport when its top is within the bottom 80% of viewport
+    // and its bottom is not above the viewport
+    return (
+      rect.top <= viewportHeight * 0.8 && 
+      rect.bottom >= 0
+    );
+  }
+  
+  // Function to check if element is completely out of viewport
+  function isOutOfViewport(element) {
+    const rect = element.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    // Element is considered out of viewport when it's completely above or below the viewport
+    return (
+      rect.bottom < 0 || 
+      rect.top > viewportHeight
+    );
+  }
+  
+  // Function to handle scroll events
+  function handleScroll() {
+    sections.forEach((section) => {
+      if (isInViewport(section)) {
+        section.classList.add('animate');
+      } else if (isOutOfViewport(section)) {
+        // Remove the animate class when completely out of viewport
+        // This allows the animation to trigger again on next scroll
+        section.classList.remove('animate');
+      }
+    });
+  }
+  
+  // Add scroll event listener with throttling to improve performance
+  let scrollTimeout;
+  window.addEventListener('scroll', function() {
+    if (!scrollTimeout) {
+      scrollTimeout = setTimeout(function() {
+        handleScroll();
+        scrollTimeout = null;
+      }, 10); // Small timeout for better performance
+    }
+  });
+  
+  // Check on initial load as well
+  handleScroll();
+});
+
+   // JavaScript for the Image Slider (add to your existing script)
 document.addEventListener("DOMContentLoaded", function() {
     // Image slider functionality
     let slides = document.querySelectorAll(".image-slider .slide");
