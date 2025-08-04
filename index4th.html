@@ -1,0 +1,1510 @@
+</html><!DOCTYPE html>
+<html lang="en">
+<head>              
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Tinney's kitchen</title>
+          <style>
+           /* Animation styles */
+         .section {
+          opacity: 0;
+          transform: translateY(30px);
+          transition: opacity 0.8s ease, transform 0.8s ease;
+          }
+
+         .section.animate {
+         opacity: 1;
+         transform: translateY(0);
+         }
+
+        /* Optional: stagger animations */
+         .section:nth-child(2) { transition-delay: 0.1s; }
+         .section:nth-child(3) { transition-delay: 0.2s; }
+         .section:nth-child(4) { transition-delay: 0.3s; }
+         .section:nth-child(5) { transition-delay: 0.4s; }
+
+           .image-slider {
+             position: relative;
+             width: 100%;
+             height: 90vh;
+             overflow: hidden;
+           }
+           .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            z-index: 1;
+            }
+
+           .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+           }
+
+          .slide.active {
+            opacity: 1;
+            z-index: 2;
+          }
+
+          .slider-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            z-index: 3;
+           }
+
+           .slider-dot{
+             width: 12px;
+             height: 12px;
+             border-radius: 50%;
+             background-color: rgba(255, 255, 255, 0.5);
+             margin: 0 8px;
+             cursor: pointer;
+             transition: background-color 0.3s;
+           } 
+
+           .slider-dot.active {
+             background-color: #d2691e;
+           }
+
+           @media (max-width: 1200px) {
+             .image-slider {
+               height: 50vh;
+             }
+           }
+           
+           body{
+                  font-family: Arial,sans-serif;
+                  margin: 0;
+                  padding: 0;
+                  background-image: url('popping-cuisine.jpg'); 
+                  background-size: cover;
+                  background-repeat: no-repeat;
+                  background-position: center;
+                  background-attachment: fixed;
+                  text-align: center;
+                  
+            }
+
+            /* New custom navbar styles */
+            .navbar {
+                  background-color: #d2691e;
+                  color: white;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  padding: 0 20px;
+                  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                  position: relative;
+                  z-index: 100;
+            }
+
+            .navbar-brand {
+                  font-size: 28px;
+                  font-weight: bold;
+                  padding: 15px 0;
+                  text-decoration: none;
+                  color: white;
+            }
+
+            .navbar-tagline {
+                  font-size: 16px;
+                  font-style: italic;
+                  margin-left: 20px;
+                  display: inline-block;
+            }
+
+            .navbar-menu {
+                  display: flex;
+                  list-style: none;
+                  margin: 0;
+                  padding: 0;
+            }
+
+            .navbar-item {
+                  margin: 0 5px;
+            }
+
+            .navbar-link {
+                  color: white;
+                  text-decoration: none;
+                  padding: 10px 15px;
+                  border-radius: 5px;
+                  transition: background-color 0.3s;
+                  font-weight: bold;
+                  display: block;
+            }
+
+            .navbar-link:hover {
+                  background-color: rgba(255, 255, 255, 0.2);
+            }
+
+            .navbar-link.active {
+                  background-color: rgba(255, 255, 255, 0.3);
+            }
+
+            .navbar-toggle {
+                  display: none;
+                  background: none;
+                  border: none;
+                  color: white;
+                  font-size: 24px;
+                  cursor: pointer;
+                  padding: 10px;
+            }
+
+            /* Mobile responsive styles */
+            @media (max-width: 768px) {
+                  .navbar {
+                        flex-direction: column;
+                        align-items: flex-start;
+                  }
+
+                  .navbar-brand-container {
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                  }
+
+                  .navbar-tagline {
+                        display: none;
+                  }
+
+                  .navbar-toggle {
+                        display: block;
+                  }
+
+                  .navbar-menu {
+                        display: none;
+                        flex-direction: column;
+                        width: 100%;
+                        padding: 10px 0;
+                  }
+
+                  .navbar-menu.show {
+                        display: flex;
+                  }
+
+                  .navbar-item {
+                        margin: 5px 0;
+                        width: 100%;
+                  }
+
+                  .navbar-link {
+                        width: 100%;
+                        text-align: center;
+                  }
+            }
+
+            h2, h3, p {
+                  text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+            
+            
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .faq-header h1 {
+            color: #e67e22;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .faq-header p {
+            color: #777;
+            font-size: 1.1rem;
+        }
+
+        .faq-header::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: #e67e22;
+            margin: 15px auto;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px 15px;
+            background-color: #f8f8f8;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #f0f0f0;
+        }
+
+        .faq-question h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .faq-icon {
+            display: inline-block;
+            position: relative;
+            width: 18px;
+            height: 18px;
+        }
+
+        .faq-icon::before,
+        .faq-icon::after {
+            content: '';
+            position: absolute;
+            background-color: #e67e22;
+            transition: all 0.3s ease;
+        }
+
+        .faq-icon::before {
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 2px;
+            transform: translateY(-50%);
+        }
+
+        .faq-icon::after {
+            left: 50%;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            transform: translateX(-50%);
+        }
+
+        .faq-question.active .faq-icon::after {
+            transform: translateX(-50%) rotate(90deg);
+            opacity: 0;
+        }
+
+        .faq-answer {
+            padding: 0 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+
+        .faq-answer.active {
+            max-height: 200px;
+            padding: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .faq-container {
+                padding: 15px;
+                margin: 20px 10px;
+            }
+
+            .faq-header h1 {
+                font-size: 2rem;
+            }
+        }
+            .container{
+                      max-width: 800px;
+                      margin: 20px auto;
+                      padding: 20px;
+                      background: rgba(0, 0, 0, 0.6);                                   
+                      border-radius: 10px;
+                      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);          
+            }   
+
+            .button{
+                  display: inline-block;
+                  padding: 10px 20px;
+                  margin-top: 10px;
+                  background-color: #d2691e;
+                  color: white;
+                  text-decoration: none;
+                  border-radius: 5px; cursor: pointer;
+                  cursor: pointer;
+                  font-weight: bold
+            }
+
+            .section {
+                  margin: 20px 0;
+                  padding: 20px;
+                  border-radius: 10px;
+                  background-color: rgba(0, 0, 0, 0.7); 
+                  color: white;
+                  font-weight: 500;
+                  text-shadow: 1px 1px 2px rgba(0,0,0,0.7); 
+            }
+            
+            /* popup styling */
+            .popup{
+                  display:none;
+                  position: fixed;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  background: white;
+                  padding: 20px;
+                  z-index: 1001;
+                  box-Shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                  border-radius: 10px;
+                  color: black;
+                  text-align: left;
+                  width: 90%;
+                  max-width: 400px;
+                  max-height: 80vh; 
+                  overflow-y: auto; 
+
+            }
+            .popup h2 {
+                  margin-top: 0;
+            }
+
+            .popup input, .popup textarea{
+                  width: 100%;
+                  padding: 10px;
+                  margin: 5px 0;
+                  border: 1px solid #ccc;
+                  border-radius: 5px;
+            }
+
+            .popup .close{
+                  background: red;
+                  color: white;
+                  padding: 5px 10px;
+                  border: none;
+                  cursor: pointer;
+                  margin-top: 10px;
+            }
+
+            #popupOverlay {
+                  display: none;
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width :100%;
+                  height:100%;
+                  background: rgba(0, 0, 0, 0.5);
+                  z-index: 1000;
+            }
+            
+            .meal-prep {
+              background-color: #fff9f1;
+              padding: 30px;
+              border-radius: 15px;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+              margin: 40px auto;
+              max-width: 900px;
+            }
+
+            .meal-prep h2,
+            .meal-prep h3 {
+              color: #d2691e;
+              margin-bottom: 15px;
+              text-align: center;
+            }
+
+            .meal-prep-table,
+            .meal-pricing-table {
+              width: 100%;
+              border-collapse: collapse;
+              margin-top: 20px;
+            }
+
+            .meal-prep-table th,
+            .meal-prep-table td,
+            .meal-pricing-table th,
+            .meal-pricing-table td {
+              border: 1px solid #ddd;
+              padding: 12px;
+              text-align: center;
+            }
+
+            .meal-prep-table th,
+            .meal-pricing-table th {
+              background-color: #ffe0c2;
+              color: #5a2d0c;
+            }
+
+            .meal-prep-table tr:nth-child(even),
+            .meal-pricing-table tr:nth-child(even) {
+              background-color: #fdf5ee;
+            }
+          </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-brand-container">
+      <a href="/" class="navbar-brand">TINNEY'S KITCHEN</a>
+      <span class="navbar-tagline">Every plate tells a story, let tinney's kitchen write yours.</span>
+      <button class="navbar-toggle" id="navbar-toggle">☰</button>
+    </div>
+    <ul class="navbar-menu" id="navbar-menu">
+      <li class="navbar-item"><a href="#" class="navbar-link active">Home</a></li>
+      <li class="navbar-item"><a href="javascript:void(0)" onclick="openPopup('popupForm')" class="navbar-link">Book Now</a></li>
+      <li class="navbar-item"><a href="javascript:void(0)" onclick="openPopup('quotePopup')" class="navbar-link">Get a Quote</a></li>
+      <li class="navbar-item"><a href="javascript:void(0)" onclick="openPopup('faqPopup')"     class="navbar-link">FAQs</a></li>
+      <li class="navbar-item"><a href="#" class="navbar-link">About</a></li>
+    </ul>
+  </nav>
+   
+   <div class="image-slider">
+    <div class="slide active">
+      <img src="photo_2025-04-09-13-22-37.jpg" alt="Delicious meal from tinney's kitchen"/>
+    </div>
+
+    <div class="slide">
+      <img src="photo_2025-04-09_13-22-38 (2).jpg" alt="Gourmet dining experience"/>
+    </div>
+
+    <div class="slide">
+      <img src="photo_2025-04-09_13-22-38 (3).jpg" alt="healthy meal prep"/>
+    </div>
+    
+    <div class="slide">
+      <img src="photo_2025-04-09_13-22-39 (2).jpg" alt="chef's special meal"/>
+    </div>
+
+    <div class="slide">
+      <img src="photo_2025-04-09_13-22-37 (2).jpg" alt="private dining experience"/>
+    </div> 
+    <div class="slider-controls">
+      <div class="slider-dot active" data-index="0"></div>
+      <div class="slider-dot" data-index="1"></div>
+      <div class="slider-dot" data-index="2"></div>
+      <div class="slider-dot" data-index="3"></div>
+      <div class="slider-dot" data-index="4"></div>
+    </div>
+  </div>
+
+  <div class="container">
+            <h2>Welcome to Tinney's kitchen</h2>
+            <p>Delicious,homemade meals crafted with love.</p>
+
+            <div class="section">
+                 <h2>About Tinney's Kitchen</h2>
+                 <h3>Meet chef whitney-Of tinney's kitchen.</h3>
+                 <p>Cooking has always been more than just meals for me-it's a passion, an art, and a way to bring people 
+                   together.My journey as a private chef started with a deep love for food and the joy of creating
+                   unforgetable dining experiences.From experimenting in the kitchen as a child to perfecting my craft
+                   professionally, every dish I create carries a strory.</p> 
+                 <p>Through<b>Tinney's kitchen</b> I bring homemade,high-quality meals to the table crafted with love and 
+                  expertise. My goal is simple: to provide my clients with expectional flavors, warmth, and a dining
+                  expierience that feels both luxurious and comforting </p>
+            </div>
+            <div class="section">
+                  <h3>My Cooking Philosophy</h3>
+                  <p>At <b>Tinney's Kitchen</b>, I believe that great food starts with great ingredients. That's why I focus on
+                         using <b>fresh, locally sourced produce and high-quality ingredients</b> to create dishes that are not
+                          only delicious but also nourishing.</p>
+                  <p>My cooking style is inspired by <b>[Cuisine like French, Italian, African, Fusion, etc.]</b>,
+                         blending traditional flavors with a modern touch. Whether you're looking for an intimate private dining
+                         experience, event catering, or a custom meal plan, every dish is prepared with care, creativity, and 
+                         attention to detail.</p>
+              </div>
+              
+              <div class="section">
+                  <h3>Behind the Scenes</h3>
+                  <p>Take a peek into the world of <b>Tinney's Kitchen</b>! Here are some behind-the-scenes moments of me in action
+                  —preparing meals, experimenting with new recipes, and creating beautiful dishes for my clients.</p>
+                  <p><img src="photo_2025-03-11_13-27-44 (2).jpg" width="150"  height="150" /></p>
+              </div>
+              
+              <div class="section">
+                  <h3>What Clients Say</h3>
+                  <p><i>"Whitney's meals are not just food—they are an experience! Every bite is crafted with love and expertise."</i>
+                   - [Clients Name:Ruth Njoki.]</p>
+                  <p><i>"I had the best private dining experience thanks to Tinney's Kitchen. The flavors, the presentation, everything
+                   was perfect!"</i> - [Client Name:Cidney Wanjiru]</p>
+              </div>
+             
+              <div class="section">
+                  <h2>Book a Private Dining Experience</h2>
+                  <p>Ready to enjoy a delicious private meal crafted just for you?</p>
+                  <a href="javascript:void(0)" onclick="openPopup('popupForm')" class="button">BOOK NOW</a>
+                </div>
+
+              <div class="section">
+                   <h2>Get a Quote</h2>
+                   <p>Inquire about pricing for your private event.</p>
+                   <a href="javascript:void(0)" onclick="openPopup('quotePopup')" class="button">GET A QUOTE</a>
+                  </div>
+
+                  <div class="section">
+                        <h2>View Menu</h2>
+                        <p>Explore our delicious dishes and indulge in a variety
+                          of mouthwatering dishes crafted to perfection.</p>
+                         <a href="javascript:void(0)" onclick="openPopup('menuPopup')" class="button">VIEW MENU</a> 
+                  </div>
+
+                  <div class="section">
+                  <h2>Contact Me</h2>
+                  <p>Get intouch for inquires and special request.</p>
+                  <a href="javascript:void(0)" onclick="openPopup('contactPopup')" class="button">Contact Me</a>
+                  </div>
+    </div>
+    
+    <section class="meal-prep">
+        <h2>7-Day Gym-Friendly Meal Prep Plan</h2>
+        <p>Tailored for active individuals seeking to gain or maintain a healthy weight through balanced and nutritious meals.</p>
+      
+        <div class="meal-table-wrapper">
+          <table class="meal-prep-table">
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Breakfast</th>
+                <th>Lunch</th>
+                <th>Dinner</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Monday</td>
+                <td>Oatmeal with banana & peanut butter</td>
+                <td>Grilled chicken + brown rice + veggies</td>
+                <td>Beef stew + sweet potatoes + kales</td>
+              </tr>
+              <tr>
+                <td>Tuesday</td>
+                <td>Boiled eggs + toast + avocado</td>
+                <td>Minced beef wraps + guacamole</td>
+                <td>Tilapia fillet + ugali + spinach</td>
+              </tr>
+              <tr>
+                <td>Wednesday</td>
+                <td>Greek yogurt + granola + berries</td>
+                <td>Chicken pasta salad</td>
+                <td>Githeri with avocado & fruits</td>
+              </tr>
+              <tr>
+                <td>Thursday</td>
+                <td>Omelette + toast + tea/juice</td>
+                <td>Beef stir fry + rice</td>
+                <td>Lentils + chapati + kachumbari</td>
+              </tr>
+              <tr>
+                <td>Friday</td>
+                <td>Porridge + boiled egg + banana</td>
+                <td>Chicken sandwich + fruit smoothie</td>
+                <td>Matoke + minced meat + sukuma</td>
+              </tr>
+              <tr>
+                <td>Saturday</td>
+                <td>Pancakes + honey + tea</td>
+                <td>Rice + beans + avocado salad</td>
+                <td>Grilled chicken + mashed potatoes</td>
+              </tr>
+              <tr>
+                <td>Sunday</td>
+                <td>French toast + fruit salad</td>
+                <td>Fried fish + ugali + greens</td>
+                <td>Chicken stew + brown rice + veggies</td>
+              </tr>
+            </tbody>
+          </table>
+      
+          <h3>Pricing (KES)</h3>
+          <table class="meal-pricing-table">
+            <thead>
+              <tr>
+                <th>Package</th>
+                <th>Price (KES)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3-Day Meal Prep</td>
+                <td>KES 4,500</td>
+              </tr>
+              <tr>
+                <td>7-Day Meal Prep</td>
+                <td>KES 9,500</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+  <!-- Overlay -->
+  <div id="popupOverlay"></div>
+
+  <!-- Popup Form -->
+  <div id="popupForm" class="popup">
+        <h2>Book a private Dining Experience</h2>
+        <form
+          action="https://formspree.io/f/xldjappk"
+           method="POST">
+
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" required>
+
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email"required>
+
+              <label for="date">preferred Date:</label>
+              <input type="date" id="date" name="message_date" required>
+
+              <label for="message">Additional Details:</label>
+              <textarea id="message" name="message_details" rows="4"></textarea>
+
+              <button type="submit" class="button">Submit</button>
+              <button type="button" class="close" onclick="closePopup()">close</button>
+              
+        </form>
+  </div>
+
+  <!-- Quote Popup -->
+  <div id="quotePopup" class="popup">
+    <h2>Request a Quote</h2>
+    <form
+      action="https://formspree.io/f/xldjappk"
+        method="POST">
+      <label for="quoteName">Name:</label>
+      <input type="text" id="quoteName" name="message_name" required>
+  
+      <label for="eventType">Event Type:</label>
+      <input type="text" id="eventType" name="message_event" required>
+  
+      <label for="guests">Number of Guests:</label>
+      <input type="number" id="guests" name="message_guests" required>
+  
+      <label for="quoteDetails">Additional Details:</label>
+      <textarea id="quoteDetails" name="message_details" rows="4"></textarea>
+  
+      <button type="submit" class="button">Submit</button>
+      <button type="button" class="close" onclick="closePopup()">Close</button>
+    </form>
+  </div>
+  
+   
+  <div id="faqPopup" class="popup"></div>
+        <h1>🍴 Frequently Asked Questions</h1>
+        <p>Everything you need to know about Tinney's Kitchen services</p>
+    </div>
+
+    <div class="faq-list">
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>What services do you offer?</h3>
+                <span class="faq-icon"></span>
+            </div>
+            <div class="faq-answer">
+                <p>I provide private chef services, meal prep for gym-goers, event catering (like birthdays or picnics), and custom dessert orders.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Popup -->
+<div id="faqPopup" class="popup">
+  <h1>🍴 Frequently Asked Questions</h1>
+  <p>Everything you need to know about Tinney's Kitchen services</p>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-question">
+        <h3>What services do you offer?</h3>
+        <span class="faq-icon"></span>
+      </div>
+      <div class="faq-answer">
+        <p>I provide private chef services, meal prep for gym-goers, event catering (like birthdays or picnics), and custom dessert orders.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <h3>How can I book your services?</h3>
+        <span class="faq-icon"></span>
+      </div>
+      <div class="faq-answer">
+        <p>Click on the "Book Now" button on the website to fill out the booking form, or contact me directly via WhatsApp or email.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <h3>Do you offer custom menus?</h3>
+        <span class="faq-icon"></span>
+      </div>
+      <div class="faq-answer">
+        <p>Yes! I tailor every menu based on your taste, dietary needs, and event type. Let's chat about your preferences.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <h3>How far in advance should I book?</h3>
+        <span class="faq-icon"></span>
+      </div>
+      <div class="faq-answer">
+        <p>At least 3–7 days in advance is ideal, especially for events or custom meal plans.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <h3>Do you cater to specific dietary needs?</h3>
+        <span class="faq-icon"></span>
+      </div>
+      <div class="faq-answer">
+        <p>Absolutely. I accommodate vegetarian, vegan, gluten-free, keto, and high-protein diets.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <h3>Where are you located and do you deliver?</h3>
+        <span class="faq-icon"></span>
+      </div>
+      <div class="faq-answer">
+        <p>I'm based in [your city], and yes—I deliver within the city and surrounding areas. Delivery fees may apply.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <h3>What are your prices?</h3>
+        <span class="faq-icon"></span>
+      </div>
+      <div class="faq-answer">
+        <p>Pricing varies depending on the service. You can view the pricing under the "Menu" or "Meal Prep" section, or request a custom quote.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <h3>Do you offer tasting sessions?</h3>
+        <span class="faq-icon"></span>
+      </div>
+      <div class="faq-answer">
+        <p>Yes, tasting sessions are available for event bookings upon request at an additional cost.</p>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="close" onclick="closePopup()">Close</button>
+</div>
+
+  <!-- View Menu Popup -->
+  <div id="menuPopup" class="popup">
+   <h2>Our Menu</h2>
+       <div>
+   <h3>Appetizers</h3>
+    <ul>
+      <li>Spicy Grilled Prawns</li>
+      <li>Stuffed Mushrooms</li>
+      <li>Mini Beef Sliders</li>
+      <li>Caprese Skewers</li>
+    </ul>
+
+    <h3>Main Courses</h3>
+    <ul>
+      <li>Garlic Butter Herb Chicken</li>
+      <li>Slow-Cooked Lamb Chops</li>
+      <li>Grilled Salmon with Mango Salsa</li>
+      <li>Spaghetti in Creamy Cajun Sauce</li>
+    </ul>
+
+    <h3>Sides</h3>
+    <ul>
+      <li>Roasted Veggie Medley</li>
+      <li>Creamy Mashed Potatoes</li>
+      <li>Jollof Rice</li>
+      <li>Garlic Parmesan Bread Rolls</li>
+    </ul>
+
+    <h3>Desserts</h3>
+    <ul>
+      <li>Chocolate Lava Cake</li>
+      <li>Vanilla Bean Cheesecake</li>
+      <li>Fruit Tartlets</li>
+      <li>Coconut Cream Pudding</li>
+    </ul>
+
+    <h3>Drinks</h3>
+    <ul>
+      <li>Fresh Mint Lemonade</li>
+      <li>Fruit-Infused Water</li>
+      <li>Homemade Zobo</li>
+      <li>Signature Mocktails</li>
+    </ul>
+    </div>
+    <button type="button" class="close" onclick="closePopup()">Close</button>
+  </div>
+
+  <!-- Contact Me Popup -->
+  <div id="contactPopup" class="popup">
+    <h2>Contact Me</h2>
+    <form
+       action="https://formspree.io/f/xldjappk"
+        method="POST">
+
+      <label for="contactName">Name:</label>
+      <input type="text" id="contactName" name="message_name" required>
+  
+      <label for="contactEmail">Email:</label>
+      <input type="email" id="contactEmail" name="email" required>
+  
+      <label for="contactMessage">Message:</label>
+      <textarea id="contactMessage" name="message" rows="4"></textarea>
+  
+      <button type="submit" class="button">Send</button>
+      <button type="button" class="close" onclick="closePopup()">Close</button>
+    </form>
+  </div>      
+         
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+  // Toggle mobile menu
+  const navbarToggle = document.getElementById('navbar-toggle');
+  const navbarMenu = document.getElementById('navbar-menu');
+  
+  navbarToggle.addEventListener('click', function() {
+    navbarMenu.classList.toggle('show');
+  });
+  
+  // Close menu when clicking outside
+  document.addEventListener('click', function(event) {
+    const isClickInside = navbarToggle.contains(event.target) || navbarMenu.contains(event.target);
+    if (!isClickInside && navbarMenu.classList.contains('show')) {
+      navbarMenu.classList.remove('show');
+    }
+  });
+  
+  // JavaScript for FAQ toggle functionality
+  const initFaqToggle = function() {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+        
+    faqQuestions.forEach(question => {
+      question.addEventListener('click', function() {
+        // Toggle active class on question
+        this.classList.toggle('active');
+        
+        // Toggle active class on answer
+        const answer = this.nextElementSibling;
+        answer.classList.toggle('active');
+      });
+    });
+  };
+
+  // Initialize FAQ toggle on page load
+  initFaqToggle();
+  
+  // Ensure FAQ popup has correct content
+  const faqPopup = document.getElementById('faqPopup');
+  if (faqPopup && faqPopup.innerHTML.trim() === '') {
+    // If the FAQ popup is empty, we need to populate it
+    faqPopup.innerHTML = `
+      <h1>🍴 Frequently Asked Questions</h1>
+      <p>Everything you need to know about Tinney's Kitchen services</p>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>What services do you offer?</h3>
+            <span class="faq-icon"></span>
+          </div>
+          <div class="faq-answer">
+            <p>I provide private chef services, meal prep for gym-goers, event catering (like birthdays or picnics), and custom dessert orders.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>How can I book your services?</h3>
+            <span class="faq-icon"></span>
+          </div>
+          <div class="faq-answer">
+            <p>Click on the "Book Now" button on the website to fill out the booking form, or contact me directly via WhatsApp or email.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Do you offer custom menus?</h3>
+            <span class="faq-icon"></span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes! I tailor every menu based on your taste, dietary needs, and event type. Let's chat about your preferences.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>How far in advance should I book?</h3>
+            <span class="faq-icon"></span>
+          </div>
+          <div class="faq-answer">
+            <p>At least 3–7 days in advance is ideal, especially for events or custom meal plans.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Do you cater to specific dietary needs?</h3>
+            <span class="faq-icon"></span>
+          </div>
+          <div class="faq-answer">
+            <p>Absolutely. I accommodate vegetarian, vegan, gluten-free, keto, and high-protein diets.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Where are you located and do you deliver?</h3>
+            <span class="faq-icon"></span>
+          </div>
+          <div class="faq-answer">
+            <p>I'm based in [your city], and yes—I deliver within the city and surrounding areas. Delivery fees may apply.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>What are your prices?</h3>
+            <span class="faq-icon"></span>
+          </div>
+          <div class="faq-answer">
+            <p>Pricing varies depending on the service. You can view the pricing under the "Menu" or "Meal Prep" section, or request a custom quote.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Do you offer tasting sessions?</h3>
+            <span class="faq-icon"></span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, tasting sessions are available for event bookings upon request at an additional cost.</p>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="close" onclick="closePopup()">Close</button>
+    `;
+  }
+  
+  // Re-initialize FAQ toggle when FAQ popup is opened
+  const faqLink = document.querySelector('a[onclick="openPopup(\'faqPopup\')"]');
+  if (faqLink) {
+    faqLink.addEventListener('click', function() {
+      // Allow time for popup to be added to DOM
+      setTimeout(initFaqToggle, 100);
+    });
+  }
+
+  // Add click event on overlay to close popups when clicking outside
+  const popupOverlay = document.getElementById('popupOverlay');
+  if (popupOverlay) {
+    popupOverlay.addEventListener('click', function(event) {
+      // Only close if the click was directly on the overlay, not on popup content
+      if (event.target === popupOverlay) {
+        closePopup();
+      }
+    });
+  }
+
+  // Image slider functionality
+  const slides = document.querySelectorAll(".slide");
+  const dots = document.querySelectorAll(".slider-dot");
+  let currentIndex = 0;
+  
+  function showSlide(index) {
+    // Hide all slides
+    slides.forEach(slide => {
+      slide.classList.remove("active");
+    });
+    
+    // Hide all active dots
+    dots.forEach(dot => {
+      dot.classList.remove("active");
+    });
+    
+    // Update index
+    currentIndex = index;
+    
+    // Show new slide and activate dot
+    slides[currentIndex].classList.add("active");
+    dots[currentIndex].classList.add("active");
+  }
+  
+  // Set up automatic sliding
+  function nextSlide() {
+    let nextIndex = (currentIndex + 1) % slides.length;
+    showSlide(nextIndex);
+  }
+  
+  // Start the automatic slideshow
+  let slideInterval = setInterval(nextSlide, 5000); // Change slides every 5 seconds
+  
+  // Set up click events for the dots
+  dots.forEach(dot => {
+    dot.addEventListener("click", function() {
+      clearInterval(slideInterval); // Stop automatic sliding
+      showSlide(parseInt(this.getAttribute("data-index")));
+      slideInterval = setInterval(nextSlide, 5000); // Restart automatic sliding
+    });
+  });
+  
+  // Initialize the first slide
+  showSlide(0);
+
+  // Animation for sections
+  // Get all sections that should animate
+  const sections = document.querySelectorAll('.section');
+  
+  // Function to check if element is in viewport
+  function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    return (
+      rect.top <= viewportHeight * 0.8 && 
+      rect.bottom >= 0
+    );
+  }
+  
+  // Function to check if element is completely out of viewport
+  function isOutOfViewport(element) {
+    const rect = element.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    return (
+      rect.bottom < 0 || 
+      rect.top > viewportHeight
+    );
+  }
+  
+  // Function to handle scroll events
+  function handleScroll() {
+    sections.forEach((section) => {
+      if (isInViewport(section)) {
+        section.classList.add('animate');
+      } else if (isOutOfViewport(section)) {
+        section.classList.remove('animate');
+      }
+    });
+  }
+  
+  // Add scroll event listener with throttling to improve performance
+  let scrollTimeout;
+  window.addEventListener('scroll', function() {
+    if (!scrollTimeout) {
+      scrollTimeout = setTimeout(function() {
+        handleScroll();
+        scrollTimeout = null;
+      }, 10);
+    }
+  });
+  
+  // Check on initial load as well
+  handleScroll();
+});
+
+// Popup functions
+function openPopup(popupId) {
+  // Close any open popups first
+  closePopup();
+  document.getElementById('popupOverlay').style.display = 'block';
+  document.getElementById(popupId).style.display = 'block';
+  
+  // If it's the FAQ popup, initialize the toggle functionality
+  if (popupId === 'faqPopup') {
+    setTimeout(function() {
+      const faqQuestions = document.querySelectorAll('#faqPopup .faq-question');
+      faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+          this.classList.toggle('active');
+          const answer = this.nextElementSibling;
+          answer.classList.toggle('active');
+        });
+      });
+    }, 100);
+  }
+  
+  // Add active class to navbar link
+  const navbarLinks = document.querySelectorAll('.navbar-link');
+  navbarLinks.forEach(link => {
+    link.classList.remove('active');
+  });
+  
+  // Find and activate the correct navbar link
+  const activeLink = document.querySelector(`.navbar-link[onclick*="${popupId}"]`);
+  if (activeLink) {
+    activeLink.classList.add('active');
+  }
+}
+
+function closePopup() {
+  document.getElementById('popupOverlay').style.display = 'none';
+  const popups = document.querySelectorAll('.popup');
+  popups.forEach(popup => popup.style.display = 'none');
+}
+//     document.addEventListener("DOMContentLoaded", function() {
+//   // Toggle mobile menu
+//   const navbarToggle = document.getElementById('navbar-toggle');
+//   const navbarMenu = document.getElementById('navbar-menu');
+  
+//   navbarToggle.addEventListener('click', function() {
+//     navbarMenu.classList.toggle('show');
+//   });
+  
+//   // Close menu when clicking outside
+//   document.addEventListener('click', function(event) {
+//     const isClickInside = navbarToggle.contains(event.target) || navbarMenu.contains(event.target);
+//     if (!isClickInside && navbarMenu.classList.contains('show')) {
+//       navbarMenu.classList.remove('show');
+//     }
+//   });
+  
+//   // JavaScript for FAQ toggle functionality
+//   const initFaqToggle = function() {
+//     const faqQuestions = document.querySelectorAll('.faq-question');
+        
+//     faqQuestions.forEach(question => {
+//       question.addEventListener('click', function() {
+//         // Toggle active class on question
+//         this.classList.toggle('active');
+        
+//         // Toggle active class on answer
+//         const answer = this.nextElementSibling;
+//         answer.classList.toggle('active');
+//       });
+//     });
+//   };
+
+//   // Initialize FAQ toggle on page load
+//   initFaqToggle();
+  
+//   // Re-initialize FAQ toggle when FAQ popup is opened
+//   const faqLink = document.querySelector('a[onclick="openPopup(\'faqPopup\')"]');
+//   if (faqLink) {
+//     faqLink.addEventListener('click', function() {
+//       // Allow time for popup to be added to DOM
+//       setTimeout(initFaqToggle, 100);
+//     });
+//   }
+
+//   // Image slider functionality
+//   const slides = document.querySelectorAll(".slide");
+//   const dots = document.querySelectorAll(".slider-dot");
+//   let currentIndex = 0;
+  
+//   function showSlide(index) {
+//     // Hide all slides
+//     slides.forEach(slide => {
+//       slide.classList.remove("active");
+//     });
+    
+//     // Hide all active dots
+//     dots.forEach(dot => {
+//       dot.classList.remove("active");
+//     });
+    
+//     // Update index
+//     currentIndex = index;
+    
+//     // Show new slide and activate dot
+//     slides[currentIndex].classList.add("active");
+//     dots[currentIndex].classList.add("active");
+//   }
+  
+//   // Set up automatic sliding
+//   function nextSlide() {
+//     let nextIndex = (currentIndex + 1) % slides.length;
+//     showSlide(nextIndex);
+//   }
+  
+//   // Start the automatic slideshow
+//   let slideInterval = setInterval(nextSlide, 5000); // Change slides every 5 seconds
+  
+//   // Set up click events for the dots
+//   dots.forEach(dot => {
+//     dot.addEventListener("click", function() {
+//       clearInterval(slideInterval); // Stop automatic sliding
+//       showSlide(parseInt(this.getAttribute("data-index")));
+//       slideInterval = setInterval(nextSlide, 5000); // Restart automatic sliding
+//     });
+//   });
+  
+//   // Initialize the first slide
+//   showSlide(0);
+
+//   // Animation for sections
+//   // Get all sections that should animate
+//   const sections = document.querySelectorAll('.section');
+  
+//   // Function to check if element is in viewport
+//   function isInViewport(element) {
+//     const rect = element.getBoundingClientRect();
+//     const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+//     return (
+//       rect.top <= viewportHeight * 0.8 && 
+//       rect.bottom >= 0
+//     );
+//   }
+  
+//   // Function to check if element is completely out of viewport
+//   function isOutOfViewport(element) {
+//     const rect = element.getBoundingClientRect();
+//     const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+//     return (
+//       rect.bottom < 0 || 
+//       rect.top > viewportHeight
+//     );
+//   }
+  
+//   // Function to handle scroll events
+//   function handleScroll() {
+//     sections.forEach((section) => {
+//       if (isInViewport(section)) {
+//         section.classList.add('animate');
+//       } else if (isOutOfViewport(section)) {
+//         section.classList.remove('animate');
+//       }
+//     });
+//   }
+  
+//   // Add scroll event listener with throttling to improve performance
+//   let scrollTimeout;
+//   window.addEventListener('scroll', function() {
+//     if (!scrollTimeout) {
+//       scrollTimeout = setTimeout(function() {
+//         handleScroll();
+//         scrollTimeout = null;
+//       }, 10);
+//     }
+//   });
+  
+//   // Check on initial load as well
+//   handleScroll();
+// });
+
+// // Popup functions
+// function openPopup(popupId) {
+//   // Close any open popups first
+//   closePopup();
+//   document.getElementById('popupOverlay').style.display = 'block';
+//   document.getElementById(popupId).style.display = 'block';
+  
+//   // Add active class to navbar link
+//   const navbarLinks = document.querySelectorAll('.navbar-link');
+//   navbarLinks.forEach(link => {
+//     link.classList.remove('active');
+//   });
+  
+//   // Find and activate the correct navbar link
+//   const activeLink = document.querySelector(`.navbar-link[onclick*="${popupId}"]`);
+//   if (activeLink) {
+//     activeLink.classList.add('active');
+//   }
+// }
+
+// function closePopup() {
+//   document.getElementById('popupOverlay').style.display = 'none';
+//   const popups = document.querySelectorAll('.popup');
+//   popups.forEach(popup => popup.style.display = 'none');
+// }
+  </script>
+  </body>
+  </html>
+  <!-- <script>
+    
+    document.addEventListener("DOMContentLoaded", function() {
+      // Toggle mobile menu
+      const navbarToggle = document.getElementById('navbar-toggle');
+      const navbarMenu = document.getElementById('navbar-menu');
+      
+      navbarToggle.addEventListener('click', function() {
+        navbarMenu.classList.toggle('show');
+      });
+      
+      // Close menu when clicking outside
+      document.addEventListener('click', function(event) {
+        const isClickInside = navbarToggle.contains(event.target) || navbarMenu.contains(event.target);
+        if (!isClickInside && navbarMenu.classList.contains('show')) {
+          navbarMenu.classList.remove('show');
+        }
+      });
+      
+       // JavaScript for FAQ toggle functionality
+       const initFaqToggle = function() {
+         const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    // Toggle active class on question
+                    this.classList.toggle('active');
+                    
+                    // Toggle active class on answer
+                    const answer = this.nextElementSibling;
+                    answer.classList.toggle('active');
+                });
+            });
+        });
+
+         // Initialize FAQ toggle on page load
+         document.addEventListener("DOMContentLoaded", function() {
+    initFaqToggle();
+    
+    // Re-initialize FAQ toggle when FAQ popup is opened
+    const faqLink = document.querySelector('a[onclick="openPopup(\'faqPopup\')"]');
+    if (faqLink) {
+      faqLink.addEventListener('click', function() {
+        // Allow time for popup to be added to DOM
+        setTimeout(initFaqToggle, 100);
+      });
+    }
+
+      // Image slider functionality
+      const slides = document.querySelectorAll(".slide");
+      const dots = document.querySelectorAll(".slider-dot");
+      let currentIndex = 0;
+      
+      function showSlide(index) {
+          // Hide all slides
+          slides.forEach(slide => {
+              slide.classList.remove("active");
+          });
+          
+          // Hide all active dots
+          dots.forEach(dot => {
+              dot.classList.remove("active");
+          });
+          
+          // Update index
+          currentIndex = index;
+          
+          // Show new slide and activate dot
+          slides[currentIndex].classList.add("active");
+          dots[currentIndex].classList.add("active");
+      }
+      
+      // Set up automatic sliding
+      function nextSlide() {
+          let nextIndex = (currentIndex + 1) % slides.length;
+          showSlide(nextIndex);
+      }
+      
+      // Start the automatic slideshow
+      let slideInterval = setInterval(nextSlide, 5000); // Change slides every 5 seconds
+      
+      // Set up click events for the dots
+      dots.forEach(dot => {
+          dot.addEventListener("click", function() {
+              clearInterval(slideInterval); // Stop automatic sliding
+              showSlide(parseInt(this.getAttribute("data-index")));
+              slideInterval = setInterval(nextSlide, 5000); // Restart automatic sliding
+          });
+      });
+      
+      // Initialize the first slide
+      showSlide(0);
+    
+      // Animation for sections
+      // Get all sections that should animate
+      const sections = document.querySelectorAll('.section');
+      
+      // Function to check if element is in viewport
+      function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        return (
+          rect.top <= viewportHeight * 0.8 && 
+          rect.bottom >= 0
+        );
+      }
+      
+      // Function to check if element is completely out of viewport
+      function isOutOfViewport(element) {
+        const rect = element.getBoundingClientRect();
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        return (
+          rect.bottom < 0 || 
+          rect.top > viewportHeight
+        );
+      }
+      
+      // Function to handle scroll events
+      function handleScroll() {
+        sections.forEach((section) => {
+          if (isInViewport(section)) {
+            section.classList.add('animate');
+          } else if (isOutOfViewport(section)) {
+            section.classList.remove('animate');
+          }
+        });
+      }
+      
+      // Add scroll event listener with throttling to improve performance
+      let scrollTimeout;
+      window.addEventListener('scroll', function() {
+        if (!scrollTimeout) {
+          scrollTimeout = setTimeout(function() {
+            handleScroll();
+            scrollTimeout = null;
+          }, 10);
+        }
+      });
+      
+      // Check on initial load as well
+      handleScroll();
+    });
+
+    // Popup functions
+    function openPopup(popupId) {
+      // Close any open popups first
+      closePopup();
+      document.getElementById('popupOverlay').style.display = 'block';
+      document.getElementById(popupId).style.display = 'block';
+    }
+
+     
+      // Add active class to navbar link
+    const navbarLinks = document.querySelectorAll('.navbar-link');
+    navbarLinks.forEach(link => {
+      link.classList.remove('active');
+    });
+    
+    // Find and activate the correct navbar link
+    const activeLink = document.querySelector(`.navbar-link[onclick*="${popupId}"]`);
+    if (activeLink) {
+      activeLink.classList.add('active');
+    }
+      
+
+    function closePopup() {
+      document.getElementById('popupOverlay').style.display = 'none';
+      const popups = document.querySelectorAll('.popup');
+      popups.forEach(popup => popup.style.display = 'none');
+    }
+  </script> -->
